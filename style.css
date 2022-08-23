@@ -20,6 +20,7 @@ body {
     border: 3px black solid;
     display: flex;
     align-items: flex-end;
+    background-color: white;
 }
 
 #screen {
