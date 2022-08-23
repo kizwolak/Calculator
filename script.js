@@ -44,11 +44,6 @@ let numbers = [];
 for (let i = 0; i < numberButtons.length; i++) {
     numberButtons[i].addEventListener('click', function(e) {
         number.textContent += e.currentTarget.textContent;
-        if (parseInt(screen.textContent) == result) {
-            number.textContent = '';
-            screen.textContent = '';
-            screen.appendChild(number);   
-        }
     });
 }
 
