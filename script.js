@@ -52,7 +52,10 @@ for (let i = 0; i < numberButtons.length; i++) {
 for (let i = 0; i < operatorButtons.length; i++) {
     operatorButtons[i].addEventListener('click', function(e) {
         operator = e.currentTarget.textContent;
-        if (number == result) {
+        if (parseInt(screen.textContent) == result) {
+            number.textContent = '';
+            screen.textContent = '';
+            screen.appendChild(number);
             return operator;
         }
         numbers.push(screen.textContent);
@@ -83,7 +86,7 @@ function calculate() {
     numbers = [];
     operator = '';
     numbers.push(result);
-    console.log(numbers);
+    console.log(result);
 }
 
 
