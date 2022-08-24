@@ -1,3 +1,5 @@
+//Bug to fix - calculator does not allow to remove digits after dot. Then again, is it really a bug? 
+
 function add(a, b) {
     return a + b;
 }
@@ -54,7 +56,7 @@ for (let i = 0; i < numberButtons.length; i++) {
         if (screen.textContent.includes(".")) {
             screen.textContent +=e.currentTarget.textContent
         }
-        number.textContent += e.currentTarget.textContent;
+        screen.textContent += e.currentTarget.textContent;
     });
 }
 
@@ -112,9 +114,10 @@ backspace.addEventListener('click', () => {
     screen.textContent = (screen.textContent).slice(0, -1);
 });
 
+
 dot.addEventListener('click', () => {
-    screen.textContent = screen.textContent + '.';
-    if (screen.textContent.includes(".")) {
+    if (screen.textContent.includes(".") || number.textContent.includes('.')) {
         dot.disabled = true;
     }
+    screen.textContent = screen.textContent + '.';
 })
