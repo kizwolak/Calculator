@@ -54,7 +54,8 @@ for (let i = 0; i < numberButtons.length; i++) {
         }
 
         if (screen.textContent.includes(".")) {
-            screen.textContent +=e.currentTarget.textContent
+            screen.textContent +=e.currentTarget.textContent;
+            return;
         }
         screen.textContent += e.currentTarget.textContent;
     });
