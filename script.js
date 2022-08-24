@@ -35,7 +35,7 @@ let number = document.createTextNode('');
 screen.appendChild(number);
 let clear = document.querySelector('.clear');
 let equal = document.querySelector(".equal");
-let result = 0;
+let result;
 let operatorButtons = document.querySelectorAll(".operator");
 let operator;
 let numbers = [];
@@ -44,6 +44,12 @@ let numbers = [];
 for (let i = 0; i < numberButtons.length; i++) {
     numberButtons[i].addEventListener('click', function(e) {
         number.textContent += e.currentTarget.textContent;
+        if (number == result) {
+            number.textContent = '';
+            screen.textContent = '';
+            screen.appendChild(number);
+            number.textContent += e.currentTarget.textContent;
+        }
     });
 }
 
@@ -56,11 +62,13 @@ for (let i = 0; i < operatorButtons.length; i++) {
             number.textContent = '';
             screen.textContent = '';
             screen.appendChild(number);
+            console.log(operator);
             return operator;
         }
         numbers.push(screen.textContent);
         number.textContent = '';
         screen.appendChild(number);
+        console.log(operator);
     });
 }
 
@@ -68,21 +76,21 @@ for (let i = 0; i < operatorButtons.length; i++) {
 clear.addEventListener('click', function() {
     operator = '';
     numbers = [];
+    screen.innerHTML = '';
     number.textContent = '';
     screen.appendChild(number);
 });
 
 
 function calculate() {
-    //funkcja zatrzymuje wynik z powodu kodu na dole numbers.push - wyczysc ekran
     numbers.push(screen.textContent);
     let a = parseInt(numbers[0]);
     let b = parseInt(numbers[1]);
     console.log(a);
     console.log(b);
+    console.log(operator);
     result = (operate(a, operator, b));
     screen.textContent = result;
-    //dokoncz kalkulacje po otrzymaniu wyniku (kalkulacja na podstawie wyniku)
     numbers = [];
     operator = '';
     numbers.push(result);
