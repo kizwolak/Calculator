@@ -43,13 +43,13 @@ let numbers = [];
 
 for (let i = 0; i < numberButtons.length; i++) {
     numberButtons[i].addEventListener('click', function(e) {
-        number.textContent += e.currentTarget.textContent;
-        if (number == result) {
+        if (parseFloat(screen.textContent) == result) {
             number.textContent = '';
             screen.textContent = '';
+            numbers = [];
             screen.appendChild(number);
-            number.textContent += e.currentTarget.textContent;
         }
+        number.textContent += e.currentTarget.textContent;
     });
 }
 
@@ -58,7 +58,7 @@ for (let i = 0; i < numberButtons.length; i++) {
 for (let i = 0; i < operatorButtons.length; i++) {
     operatorButtons[i].addEventListener('click', function(e) {
         operator = e.currentTarget.textContent;
-        if (parseInt(screen.textContent) == result) {
+        if (parseFloat(screen.textContent) == result) {
             number.textContent = '';
             screen.textContent = '';
             screen.appendChild(number);
@@ -84,8 +84,11 @@ clear.addEventListener('click', function() {
 
 function calculate() {
     numbers.push(screen.textContent);
-    let a = parseInt(numbers[0]);
-    let b = parseInt(numbers[1]);
+    // kod ponizej sprawia problemy z floatami - parseInt je zaokragla
+    // https://www.codegrepper.com/code-examples/javascript/convert+array+to+integer+in+javascript
+    // sprobuj zmienic metode dzialania tego kawalka - pozbadz sie parseInt
+    let a = parseFloat(numbers[0]);
+    let b = parseFloat(numbers[1]);
     console.log(a);
     console.log(b);
     console.log(operator);
@@ -99,4 +102,3 @@ function calculate() {
 
 
 equal.addEventListener('click', calculate);
-
