@@ -13,6 +13,11 @@ body {
 }
 
 #display {
+    display: flex;
+
+}
+
+#screen {
     margin-top: 50px;
     margin-left: 30px;
     height: 50px;
@@ -21,9 +26,6 @@ body {
     display: flex;
     align-items: flex-end;
     background-color: white;
-}
-
-#screen {
     margin-left: 20px;
     font-size: 25px;
 }
@@ -69,4 +71,15 @@ body {
 
 .equal {
     background-color: #a0ffa0;
+}
+
+#display {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+}
+
+#backspace {
+    margin-right: 20px;
+    height: 50px;
 }

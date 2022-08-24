@@ -24,7 +24,7 @@ function operate(a, operator, b) {
     } else if (operator === "/") {
         return divide(a, b);
     } else {
-        return "Wrong operator!";
+        return "Wrong input/operator!";
     }
 }
 
@@ -67,6 +67,7 @@ for (let i = 0; i < operatorButtons.length; i++) {
         }
         numbers.push(screen.textContent);
         number.textContent = '';
+        screen.textContent = '';
         screen.appendChild(number);
         console.log(operator);
     });
@@ -84,15 +85,14 @@ clear.addEventListener('click', function() {
 
 function calculate() {
     numbers.push(screen.textContent);
-    // kod ponizej sprawia problemy z floatami - parseInt je zaokragla
-    // https://www.codegrepper.com/code-examples/javascript/convert+array+to+integer+in+javascript
-    // sprobuj zmienic metode dzialania tego kawalka - pozbadz sie parseInt
     let a = parseFloat(numbers[0]);
     let b = parseFloat(numbers[1]);
-    console.log(a);
-    console.log(b);
-    console.log(operator);
+    if (operator == '/' && b == 0) {
+        screen.textContent = 'HOW COULD YOU!';
+        return;
+    } 
     result = (operate(a, operator, b));
+    result = result.toFixed(2);
     screen.textContent = result;
     numbers = [];
     operator = '';
@@ -102,3 +102,7 @@ function calculate() {
 
 
 equal.addEventListener('click', calculate);
+
+backspace.addEventListener('click', () => {
+    screen.textContent = (screen.textContent).slice(0, -1);
+});
