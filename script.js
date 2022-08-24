@@ -39,6 +39,7 @@ let result;
 let operatorButtons = document.querySelectorAll(".operator");
 let operator;
 let numbers = [];
+let dot = document.querySelector(".dot");
 
 
 for (let i = 0; i < numberButtons.length; i++) {
@@ -48,6 +49,10 @@ for (let i = 0; i < numberButtons.length; i++) {
             screen.textContent = '';
             numbers = [];
             screen.appendChild(number);
+        }
+
+        if (screen.textContent.includes(".")) {
+            screen.textContent +=e.currentTarget.textContent
         }
         number.textContent += e.currentTarget.textContent;
     });
@@ -106,3 +111,10 @@ equal.addEventListener('click', calculate);
 backspace.addEventListener('click', () => {
     screen.textContent = (screen.textContent).slice(0, -1);
 });
+
+dot.addEventListener('click', () => {
+    screen.textContent = screen.textContent + '.';
+    if (screen.textContent.includes(".")) {
+        dot.disabled = true;
+    }
+})
