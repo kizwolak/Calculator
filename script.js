@@ -100,7 +100,7 @@ function calculate() {
         return;
     } 
     result = (operate(a, operator, b));
-    result = result.toFixed(2);
+    result = parseFloat(result).toFixed(2);
     screen.textContent = result;
     numbers = [];
     operator = '';
@@ -113,6 +113,12 @@ equal.addEventListener('click', calculate);
 
 backspace.addEventListener('click', () => {
     screen.textContent = (screen.textContent).slice(0, -1);
+    if (screen.textContent == '') {
+        numbers[0] = '';
+        numbers.pop();
+        operator = '';
+        number = '';
+    }
 });
 
 
@@ -127,9 +133,21 @@ window.addEventListener('keydown', function(e) {
     console.log(e);
     const isNumber = isFinite(e.key);
     console.log(isNumber);
+
     if (isNumber == true) {
         screen.textContent += e.key;
     }
+
+    if ((screen.innerHTML).toString() == result && isNumber == true) {
+        number.textContent = '';
+        screen.textContent = '';
+        result == undefined
+        numbers = [];
+        screen.appendChild(number);
+        console.log(operator);
+        screen.textContent +=e.key;
+        return operator;
+    } 
 
     if(e.key == '+' || e.key == '-' || e.key == '*' || e.key == '/') {
         operator = e.key;
@@ -148,7 +166,7 @@ window.addEventListener('keydown', function(e) {
     }
 
     if(e.key == 'Enter') {
-        calculate();
+        calculate(number[0], operator, number[1]);
     }
 
     if (e.key == '.') {
@@ -158,4 +176,21 @@ window.addEventListener('keydown', function(e) {
         screen.textContent = screen.textContent + '.';
     }
 
+    if(e.key == 'Backspace') {
+        screen.textContent = (screen.textContent).slice(0, -1);
+        if (screen.textContent == '') {
+            numbers[0] = '';
+            numbers.pop();
+            operator = '';
+            number = '';
+        }    
+    }
+
 });
+
+if (screen.textContent == '') {
+    numbers[0] = '';
+    numbers.pop();
+    operator = '';
+    number = '';
+}
