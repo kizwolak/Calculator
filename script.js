@@ -121,4 +121,41 @@ dot.addEventListener('click', () => {
         dot.disabled = true;
     }
     screen.textContent = screen.textContent + '.';
-})
+});
+
+window.addEventListener('keydown', function(e) {
+    console.log(e);
+    const isNumber = isFinite(e.key);
+    console.log(isNumber);
+    if (isNumber == true) {
+        screen.textContent += e.key;
+    }
+
+    if(e.key == '+' || e.key == '-' || e.key == '*' || e.key == '/') {
+        operator = e.key;
+        if (parseFloat(screen.textContent) == result) {
+            number.textContent = '';
+            screen.textContent = '';
+            screen.appendChild(number);
+            console.log(operator);
+            return operator;
+        }
+        numbers.push(screen.textContent);
+        number.textContent = '';
+        screen.textContent = '';
+        screen.appendChild(number);
+        console.log(operator);
+    }
+
+    if(e.key == 'Enter') {
+        calculate();
+    }
+
+    if (e.key == '.') {
+        if (screen.textContent.includes(".") || number.textContent.includes('.')) {
+            dot.disabled = true;
+        }
+        screen.textContent = screen.textContent + '.';
+    }
+
+});
